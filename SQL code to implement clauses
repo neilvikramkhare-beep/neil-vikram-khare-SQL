@@ -1,0 +1,16 @@
+create table emp(emp no primary key,emp name char(10),dept name varchar(20),dept number int,job id int,DOJ date,branch varchar(20),designation varchar(20),salary int);
+insert into emp(1,"ramesh","jhgfw",67656,1236,23\09\21,"pune","manager",90000);
+insert into emp(2,"hyder","fghjd",56543,6534,30\05\18,"mumbai","administrator",76500);
+insert into emp (3,"abhishek","fgwud",56534,4363,12\03\17,"bangalore","IT",46000);
+insert into emp(4,"mahendra","fhfhd",65654,4532,17\05\19,"kolkata","HR",67000);
+insert into emp(5,"damini","fgetd",54342,7687,16\05\16,"cochin","finance",54000);
+select dept name, sum(salary) as colour burden costs 
+from emp
+group by dept name;
+select min(salary) as minimum paid,emp name, branch
+from emp
+group by branch;
+select dept name, count(emp no) as employees working from emp
+group by dept name;
+select*from emp order by salary
+select emp name,salary,dept name from emp where salary>160000 order by dept name;
