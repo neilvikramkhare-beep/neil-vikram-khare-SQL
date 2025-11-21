@@ -1,0 +1,11 @@
+create table emp(enumber int(10),ename,address varchar(20),phone number int,dept number int,deptname char(20), job_id int,designation char(10),doj,salary int);
+insert into emp(4626477230,Rahul,Pune,2532336252,5563, account,43454,account manager,1965,23000);
+insert into emp(2543254345,Suresh,Mumbai,2543255878,5476,IT manager,65679,IT,1985,54000);
+insert into emp(2567165236,Saumya,Kolkata,2328656523,3247,administrator,56763,admin,1972,55000);
+insert into emp(5242423498,Ramesh,Jaipur,6256764654,4357,MQR,43536,MQR,1991,76000);
+insert into emp(5678879832,Aditya,Calcutta,4556612387,3567,clerk,1987,23000);
+insert into emp(2345612675,Kriti,Hyderabad,5556565789,3478,analyst,1982,6200);
+select*from emp where sal>(select sal from emp where dname="IT");
+select enumber,ename,designation from emp where doj>1981 order by designation desc;
+select enumber,ename,current date doj as exp, sal/30 as daily sal from emp;
+select*from emp where(designation="clerk") or (designation="analyst");
