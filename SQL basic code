@@ -1,0 +1,16 @@
+create table student(prn int,name char(10)not null, address varchar(20)not null);
+alter table student modify name char(10) not null;
+insert into student(5675,"raj","pune");
+insert into student(5563,"suresh","mumbai");
+insert into student(4775,"rahul","hyderabad");
+insert into student(5667,"aditya","bangalore");
+insert into student(6675,"saarang","cochin");
+insert into student(9373,"hassan","kashmir");
+insert into student(5363,"sameer","kanyakumari");
+insert into student(5633,"virendra","delhi");
+insert into student(6763,"lavkesh","mysore");
+update student set prn=5755 where name="suresh";
+select*from student where address="mumbai";
+update student set name="ranvijay" where address="cochin";
+
+
