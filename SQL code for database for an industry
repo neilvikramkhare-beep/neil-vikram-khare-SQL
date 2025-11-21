@@ -1,0 +1,66 @@
+CREATE TABLE users (
+    user_id INT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL UNIQUE,
+    email VARCHAR(100) UNIQUE
+);
+INSERT INTO users (user_id, username, email) VALUES
+(1, 'alice', 'alice@example.com'),
+(2, 'bob', 'bob@example.com'),
+(3, 'charlie', 'charlie@example.com'),
+(4, 'diana', 'diana@example.com'),
+(5, 'eve', 'eve@example.com');
+CREATE TABLE conversations (
+    conversation_id INT PRIMARY KEY,
+    topic VARCHAR(255),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+INSERT INTO conversations (conversation_id, topic) VALUES
+(101, 'Project Alpha Discussion'),
+(102, 'Team Meeting Notes'),
+(103, 'Marketing Campaign Ideas'),
+(104, 'Bug Report Analysis'),
+(105, 'Feature Request Review');
+CREATE TABLE user_conversations (
+    user_id INT,
+    conversation_id INT,
+    PRIMARY KEY (user_id, conversation_id),
+    FOREIGN KEY (user_id) REFERENCES users(user_id),
+    FOREIGN KEY (conversation_id) REFERENCES conversations(conversation_id)
+);
+INSERT INTO user_conversations (user_id, conversation_id) VALUES
+(1, 101),
+(1, 102),
+(2, 101),
+(3, 103),
+(4, 104);
+SELECT * FROM users;
+SELECT * FROM conversations;
+SELECT * FROM user_conversations;
+OUTPUT
++---------+----------+---------------------+
+| user_id | username | email               |
++---------+----------+---------------------+
+|       1 | alice    | alice@example.com   |
+|       2 | bob      | bob@example.com     |
+|       3 | charlie  | charlie@example.com |
+|       4 | diana    | diana@example.com   |
+|       5 | eve      | eve@example.com     |
++---------+----------+---------------------+
++-----------------+--------------------------+---------------------+
+| conversation_id | topic                    | created_at          |
++-----------------+--------------------------+---------------------+
+|             101 | Project Alpha Discussion | 2025-10-25 16:13:05 |
+|             102 | Team Meeting Notes       | 2025-10-25 16:13:05 |
+|             103 | Marketing Campaign Ideas | 2025-10-25 16:13:05 |
+|             104 | Bug Report Analysis      | 2025-10-25 16:13:05 |
+|             105 | Feature Request Review   | 2025-10-25 16:13:05 |
++-----------------+--------------------------+---------------------+
++---------+-----------------+
+| user_id | conversation_id |evaluat
++---------+-----------------+
+|       1 |             101 |
+|       2 |             101 |
+|       1 |             102 |
+|       3 |             103 |
+|       4 |             104 |
++---------+-----------------+
