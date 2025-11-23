@@ -1,0 +1,18 @@
+BEGIN TRANSACTION;
+CREATE TABLE emp (empID INT PRIMARY KEY,ename CHAR(20),salary INT,deptID INT);
+INSERT INTO emp (empID, ename, salary, deptID) VALUES (103, 'John', 50000, 10);
+INSERT INTO emp (empID, ename, salary, deptID) VALUES (101, 'Alice', 60000, 10);
+SAVEPOINT before_delete;
+DELETE FROM emp WHERE empID = 103;
+SELECT * FROM emp;
+ROLLBACK TO before_delete;
+SELECT * FROM emp;
+COMMIT;
+CREATE USER new_employee FOR LOGIN new_employee;
+GRANT SELECT ON emp TO new_employee;
+GRANT ALL ON dept TO new_employee;
+CREATE TABLE dept (empID INT,ename CHAR(20),salary INT,deptID INT,PRIMARY KEY (empID));
+INSERT INTO dept (empID, ename, salary, deptID) VALUES (101, 'Alice', 60000, 10);
+INSERT INTO dept (empID, ename, salary, deptID) VALUES (102, 'Bob', 75000, 20);
+INSERT INTO dept (empID, ename, salary, deptID) VALUES (103, 'John', 50000, 10);
+COMMIT;
