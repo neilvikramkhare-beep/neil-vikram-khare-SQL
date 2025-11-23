@@ -1,0 +1,14 @@
+CREATE TABLE DEPT (dept_no INT PRIMARY KEY,dept_name VARCHAR(20));
+INSERT INTO DEPT VALUES (10, 'IT'), (20, 'Administration'), (30, 'Operations'), (40, 'Finance'), (50, 'Sales');
+SELECT dept_no FROM EMP
+UNION
+SELECT dept_no FROM DEPT;
+SELECT dept_no FROM EMP
+UNION ALL
+SELECT dept_no FROM DEPT;
+SELECT dept_no FROM DEPT
+EXCEPT
+SELECT dept_no FROM EMP;
+SELECT dept_no FROM EMP
+EXCEPT
+SELECT dept_no FROM DEPT;
