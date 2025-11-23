@@ -1,0 +1,36 @@
+CREATE TABLE Sailors (sid INT PRIMARY KEY,sname VARCHAR(255),rating INT, age INT);
+CREATE TABLE Boats (bid INT PRIMARY KEY,bname VARCHAR(255),color VARCHAR(255));
+CREATE TABLE Reserves (sid INT,bid INT,day DATE,PRIMARY KEY (sid, bid, day),FOREIGN KEY (sid) REFERENCES Sailors(sid), FOREIGN KEY (bid) REFERENCES Boats(bid));
+INSERT INTO Sailors VALUES (1, 'BOD', 5, 25);
+INSERT INTO Sailors VALUES (2, 'Alice', 7, 30);
+INSERT INTO Sailors VALUES (3, 'John', 8, 20);
+INSERT INTO Sailors VALUES (4, 'Mary', 6, 22);
+INSERT INTO Sailors VALUES (5, 'Steve', 7, 28);
+INSERT INTO Boats VALUES (101, 'Dragon', 'blue');
+INSERT INTO Boats VALUES (102, 'Sails', 'orange');
+INSERT INTO Boats VALUES (103, 'Rollers', 'red');
+INSERT INTO Boats VALUES (104, 'Seamers', 'purple');
+INSERT INTO Boats VALUES (105, 'Sailors', 'white');
+INSERT INTO Reserves VALUES (1, 101, '2022-05-01');
+INSERT INTO Reserves VALUES (2, 102, '2021-07-12');
+INSERT INTO Reserves VALUES (3, 103, '2023-02-15');
+INSERT INTO Reserves VALUES (4, 104, '2013-04-21');
+INSERT INTO Reserves VALUES (5, 105, '2024-05-30');
+SELECT S.*FROM Sailors S
+JOIN Reserves R ON S.sid = R.sid
+WHERE R.bid = 101;
+SELECT B.bname
+FROM Boats B
+JOIN Reserves R ON B.bid = R.bid
+JOIN Sailors S ON S.sid = R.sid
+WHERE S.sname = 'BOD';
+SELECT DISTINCT S.sname, S.age
+FROM Sailors S
+JOIN Reserves R ON S.sid = R.sid;
+(SELECT sid, sname, age, 'Ascending Order' AS SortOrder
+ FROM Sailors
+ ORDER BY age ASC)
+UNION ALL
+(SELECT sid, sname, age, 'Descending Order' AS SortOrder
+ FROM Sailors
+ ORDER BY age DESC);
