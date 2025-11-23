@@ -1,0 +1,18 @@
+CREATE TABLE sailor_reservation (sid INT,sname CHAR(10),rating INT,age INT,bid INT,bname CHAR(20),colour CHAR(20),day DATE);
+INSERT INTO sailor_reservation (sid, sname, rating, age, bid, bname, colour, day)
+VALUES (22, 'Dustin', 7, 45, 101, 'Interlake', 'blue', '2023-01-10');
+INSERT INTO sailor_reservation (sid, sname, rating, age, bid, bname, colour, day)
+VALUES (85, 'Art', 5, 25, 101, 'Interlake', 'blue', '2023-01-10');
+SELECT * FROM sailor_reservation
+WHERE sid IN (SELECT sid FROM sailor_reservation WHERE bid = 100);
+SELECT sname, age
+FROM sailor_reservation
+WHERE sid IN (SELECT sid FROM sailor_reservation WHERE colour = 'red')
+ORDER BY age ASC;
+SELECT DISTINCT sid
+FROM sailor_reservation
+WHERE bid IN (SELECT bid FROM sailor_reservation WHERE colour = 'red' OR colour = 'green');
+SELECT rating
+FROM sailor_reservation
+GROUP BY rating
+HAVING COUNT(*) > 2;
