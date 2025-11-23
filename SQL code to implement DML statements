@@ -1,0 +1,16 @@
+CREATE TABLE EMP (empNo INT,empName CHAR(20),empAddress VARCHAR(30),emp_phno INT,depNo INT,dep_name CHAR(20),job_ID INT,salary DECIMAL(10, 3));
+INSERT INTO EMP (empNo, empName, empAddress, emp_phno, depNo, dep_name, job_ID, salary)
+VALUES (1, 'Rahul', 'Pune 10', 3124743, 43, 'department of finance', 100, 3600.72);
+INSERT INTO EMP (empNo, empName, empAddress, emp_phno, depNo, dep_name, job_ID, salary)
+VALUES (2, 'Raj', 'Mumbai 6', 31748681, 81, 'department of economics', 342, 4872.81);
+INSERT INTO EMP (empNo, empName, empAddress, emp_phno, depNo, dep_name, job_ID, salary)
+VALUES (3, 'Shrirang', 'Nashik 8', 27341972, 72, 'Analytics', 281, 3671.83);
+UPDATE EMP
+SET salary = salary * 1.1
+WHERE dep_name = 'Analytics';
+DELETE FROM EMP
+WHERE empNo = 1;
+SELECT * FROM EMP;
+ALTER TABLE EMP RENAME COLUMN empAddress TO Address;
+ALTER TABLE EMP RENAME COLUMN empName TO Name;
+DROP TABLE EMP;
