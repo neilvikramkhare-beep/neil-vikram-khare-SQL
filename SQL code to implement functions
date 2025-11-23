@@ -1,0 +1,23 @@
+CREATE TABLE emp (emp_no INT,emp_name VARCHAR(255),emp_address VARCHAR(255),emp_phno BIGINT,dept_no INT,dept_name VARCHAR(255),job_id VARCHAR(255),year INT,designation VARCHAR(255),salary INT);
+INSERT INTO emp VALUES (1, 'Pavan', 'Pune', 8876428111, 3871, 'AB12', 'Analyst', 1972, 'Analyst', 45000);
+INSERT INTO emp VALUES (2, 'Ramesh', 'Cochin', 8762481527, 4567, 'BS35', 'Clerk', 1981, 'Clerk', 20000);
+INSERT INTO emp VALUES (3, 'Pravin', 'Jaipur', 8789327483, 8373, 'JY45', 'Manager', 1992, 'Manager', 49000);
+INSERT INTO emp VALUES (4, 'Adarsh', 'Nashik', 9853654151, 3471, 'BP82', 'DBA', 1987, 'DBA', 48000);
+INSERT INTO emp VALUES (5, 'Rohit', 'Kolkata', 7134823171, 8374, 'PG86', 'Finance', 1971, 'Finance', 39000);
+INSERT INTO emp VALUES (6, 'Sania', 'Mysore', 8721387415, 4265, 'BM32', 'Accountant', 1965, 'Accountant', 41000);
+SELECT count(emp_no), count(emp_name), count(salary)
+FROM emp
+GROUP BY designation
+ORDER BY designation ASC;
+SELECT count(salary)
+FROM emp
+WHERE salary > 48000;
+SELECT emp_no, salary
+FROM emp
+WHERE salary > 48000
+ORDER BY salary ASC, emp_no ASC;
+SELECT count(*)
+FROM emp
+WHERE year > 1981
+GROUP BY designation
+ORDER BY designation ASC;
