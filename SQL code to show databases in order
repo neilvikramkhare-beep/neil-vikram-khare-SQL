@@ -1,0 +1,15 @@
+CREATE TABLE Employee ( e_no INT PRIMARY KEY, e_name VARCHAR(30),e_phonno INT,dept_no INT,dept_name VARCHAR(30),job_id INT, designation VARCHAR(30), salary DECIMAL(10, 2),DOJ DATE,working_under VARCHAR(30));
+INSERT INTO Employee (e_no, e_name, dept_no, dept_name, job_id, designation, salary, DOJ) VALUES(1, 'Sizta', 10, 'IT', 1, 'T', 35000.00, '1972-08-16'),(2, 'Tom', 20, 'HR', 2, NULL, NULL, NULL),(3, 'Steven', 10, 'IT', 3, NULL, NULL, NULL),(4,'Honk', 30, 'Finance', 4, NULL, NULL, NULL),(5, 'Harsh', 40, 'Admin', 5, NULL, NULL, NULL),(6, 'Jack', 30, 'Finance', 6, NULL, NULL, NULL),(7, 'Adam', 40, 'Admin', 7, NULL, NULL, NULL),(8, 'Szenb', 10, 'IT', 8, NULL, NULL, NULL);
+SELECT dept_name,SUM(salary) AS total_salary_burden
+FROM Employee GROUP BY dept_name;
+SELECT working_under AS manager_name, MIN(salary) AS minimum_paid FROM Employee
+GROUP BY working_under;
+SELECT dept_name, COUNT(e_no) AS employees_working
+FROM Employee GROUP BY dept_name;
+SELECT * FROM Employee
+ORDER BY salary;
+SELECTe_name,salary,dept_name FROM Employee
+WHERE salary > 1600000
+ORDER BY dept_name;
+SELECT dept_name, COUNT(e_no) AS num_employees
+FROM Employee GROUP BY dept_name HAVING COUNT(e_no) > 2;
