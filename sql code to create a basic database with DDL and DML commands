@@ -1,0 +1,18 @@
+CREATE TABLE Employees (Emp_no INT PRIMARY KEY, Emp_name VARCHAR(15), Emp_address VARCHAR(20), Emp_pho_no INT, Dept_no INT, Dep_name VARCHAR(10), Salary DECIMAL(8, 3));
+CREATE TABLE Customers (Customer_id INT PRIMARY KEY,First_name VARCHAR(50),Last_name VARCHAR(50),Age INT,Country VARCHAR(50));
+CREATE TABLE Orders (Order_id INT PRIMARY KEY, Amount DECIMAL(10, 2),Customer_id INT);
+CREATE TABLE Shippings (Shipping_id INT PRIMARY KEY,Status VARCHAR(20),Customer_id INT);
+SELECT First_name, Age FROM Customers;
+SELECT Customer_id, First_name FROM Customers;
+SELECT Customer_id, First_name FROM Customers WHERE Age = 22;
+SELECT * FROM Customers WHERE Age = 22;
+UPDATE Customers SET Country = 'India' WHERE Customer_id = 2;
+UPDATE Customers SET Last_name = 'Root' WHERE Customer_id = 5;
+UPDATE Customers SET Last_name = 'Root' WHERE Customer_id = 2;
+UPDATE Orders SET Amount = 1000.00 WHERE Order_id = 4;
+UPDATE Shippings SET Status = 'delivered' WHERE Shipping_id = 1;
+UPDATE Shippings SET Customer_id = 6 WHERE Shipping_id = 5;
+UPDATE Customers SET Country = 'UK' WHERE First_name = 'John';
+UPDATE Customers SET Country = 'UAE' WHERE Customer_id = 24;
+DELETE FROM Customers WHERE Country = 'India';
+DESC Customers;
