@@ -1,0 +1,71 @@
+CREATE DATABASE IF NOT EXISTS it_industry;
+USE it_industry;
+CREATE TABLE Department (
+    departmentId INT AUTO_INCREMENT PRIMARY KEY,
+    departmentName VARCHAR(100) NOT NULL
+);
+INSERT INTO Department (departmentName) VALUES
+('Software Development'),
+('Quality Assurance'),
+('Human Resources'),
+('Sales & Marketing'),
+('IT Support');
+CREATE TABLE Employee (
+    employeeId INT AUTO_INCREMENT PRIMARY KEY,
+    firstName VARCHAR(50) NOT NULL,
+    lastName VARCHAR(50) NOT NULL,
+    email VARCHAR(100),
+    phone VARCHAR(15),
+    hireDate DATE NOT NULL,
+    jobTitle VARCHAR(100) NOT NULL,
+    departmentId INT,
+    FOREIGN KEY (departmentId) REFERENCES Department(departmentId)
+);
+INSERT INTO Employee (firstName, lastName, email, phone, hireDate, jobTitle, departmentId) VALUES
+('John', 'Doe', 'john.doe@example.com', '5551234567', '2020-05-10', 'Software Engineer', 1),
+('Emma', 'Smith', 'emma.smith@example.com', '5552345678', '2021-06-15', 'QA Analyst', 2),
+('Liam', 'Johnson', 'liam.johnson@example.com', '5553456789', '2019-09-20', 'HR Manager', 3),
+('Sophia', 'Brown', 'sophia.brown@example.com', '5554567890', '2022-01-12', 'Sales Executive', 4),
+('Noah', 'Williams', 'noah.williams@example.com', '5555678901', '2021-03-28', 'IT Support Specialist', 5),
+('Olivia', 'Davis', 'olivia.davis@example.com', '5556789012', '2023-02-08', 'Senior Developer', 1);
+CREATE TABLE Client (
+    clientId INT AUTO_INCREMENT PRIMARY KEY,
+    clientName VARCHAR(100) NOT NULL,
+    email VARCHAR(100),
+    phone VARCHAR(15),
+    address VARCHAR(200)
+);
+INSERT INTO Client (clientName, email, phone, address) VALUES
+('TechCorp Solutions', 'contact@techcorp.com', '8001234567', '123 Tech Street, New York'),
+('BlueWave Digital', 'info@bluewave.com', '8002345678', '55 Ocean Ave, Los Angeles'),
+('GreenLeaf Enterprises', 'support@greenleaf.com', '8003456789', '89 Eco Park Road, Seattle');
+CREATE TABLE Project (
+    projectId INT AUTO_INCREMENT PRIMARY KEY,
+    projectName VARCHAR(100) NOT NULL,
+    deadline DATE,
+    budget DECIMAL(10,2),
+    clientId INT,
+    FOREIGN KEY (clientId) REFERENCES Client(clientId)
+);
+INSERT INTO Project (projectName, deadline, budget, clientId) VALUES
+('E-Commerce Platform', '2025-05-30', 150000.00, 1),
+('Mobile Banking App', '2025-03-15', 200000.00, 2),
+('Marketing Automation Tool', '2025-07-20', 120000.00, 3),
+('Customer Support System', '2025-02-01', 90000.00, 1);
+CREATE TABLE EmployeeProject (
+    employeeId INT,
+    projectId INT,
+    PRIMARY KEY (employeeId, projectId),
+    FOREIGN KEY (employeeId) REFERENCES Employee(employeeId) ON DELETE CASCADE,
+    FOREIGN KEY (projectId) REFERENCES Project(projectId) ON DELETE CASCADE
+);
+INSERT INTO EmployeeProject (employeeId, projectId) VALUES
+(1, 1), 
+(6, 1),  
+(2, 2),  
+(6, 2),  
+(1, 4),  
+(5, 4),  
+(4, 3),  
+(3, 3);  
+SHOW TABLES;
